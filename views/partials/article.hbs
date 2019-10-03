@@ -1,1 +1,14 @@
-<h1>Article</h1>
+<h3>Article</h3>
+<h1>{{article.title}}</h1>
+
+{{#each article.description}}
+    <h2>{{this.header}}</h2>
+    <h3>{{this.content}}</h3>
+{{/each}}
+
+{{#if previouseArticle}}
+<a href="/article/{{article.level}}/{{previouseArticle}}"><button class="start">Previouse article</button></a>
+{{/if}}
+{{#if nextArticle}}
+<a href="/article/{{article.level}}/{{nextArticle}}"><button class="start">Next article</button></a>
+{{/if}}

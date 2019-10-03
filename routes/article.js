@@ -1,12 +1,32 @@
 var express = require("express");
 var router = express.Router();
-const Article = require("../models/Article");
+const Article = require("../models/Articles");
 
-router.get("/:level", (req, res, next) => {
+router.get("/:level/:article", (req, res, next) => {
+  const { level, article } = req.params;
+  let totalArtciles;
   debugger;
-  Article.findOne({ level: req.params.level })
+
+  Article.countDocuments({ level: level }, function(err, count) {
+    if (err) {
+      console.log(err + "count function");
+    }
+    totalArtciles = count;
+  });
+
+  Article.findOne({ level: level, article: article })
     .then(article => {
-      res.render("article", { article: article });
+      debugger;
+      const currentArticle = article.article;
+      const previousArticle = currentArticle > 1 ? currentArticle - 1 : null;
+      const nextArticle =
+        currentArticle < totalArtciles ? currentArticle + 1 : null;
+
+      res.render("article", {
+        article: article,
+        nextArticle: nextArticle,
+        previouseArticle: previousArticle
+      });
     })
     .catch(err => {
       console.log(err + "user.js route");

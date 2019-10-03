@@ -101,7 +101,8 @@ module.exports = [
         A: "Indica"
       }
     ],
-    level: 11
+    level: 1,
+    article: 1
   },
 
   {
@@ -137,7 +138,8 @@ module.exports = [
         A: ""
       }
     ],
-    level: 12
+    level: 1,
+    article: 2
   }
 
   // {

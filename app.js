@@ -11,12 +11,14 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/Users");
 const hbs = require("hbs");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const authRouetr = require("./routes/auth");
 const plantRouter = require("./routes/plant");
+const articleRouter = require("./routes/article");
 
 mongoose.Promise = Promise;
 mongoose
@@ -104,6 +106,7 @@ app.use("/", indexRouter);
 app.use("/user", usersRouter);
 app.use("/auth", authRouetr);
 app.use("/plant", plantRouter);
+app.use("/article", articleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

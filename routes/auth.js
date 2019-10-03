@@ -61,8 +61,8 @@ router.post("/register", function(req, res, next) {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/profile",
-    failureRedirect: "/login",
+    successRedirect: "/user",
+    failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true
   })
