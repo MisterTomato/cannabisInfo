@@ -10,15 +10,17 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/Users");
+const hbs = require("hbs");
 require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const authRouetr = require("./routes/auth");
+const plantRouter = require("./routes/plant");
 
 mongoose.Promise = Promise;
 mongoose
   .connect("mongodb://localhost/cannabis", {
-    useMongoClient: true,
     useNewUrlParser: true
   })
   .then(() => {
@@ -29,6 +31,7 @@ mongoose
   });
 
 var app = express();
+hbs.registerPartials(__dirname + "/views/partials");
 
 app.use(flash());
 passport.use(
@@ -99,6 +102,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/user", usersRouter);
+app.use("/auth", authRouetr);
+app.use("/plant", plantRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
