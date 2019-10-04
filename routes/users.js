@@ -10,10 +10,9 @@ router.get("/", (req, res, next) => {
       res.render("user/profile", { user: user });
     })
     .catch(err => {
-      console.log(err + "user.js route");
+      console.log(err + "user.js route ");
     });
 });
-
 
 router.get("/:id", (req, res, next) => {
   User.findById({ _id: req.params.id })
@@ -21,7 +20,7 @@ router.get("/:id", (req, res, next) => {
       res.render("user/profile", { user: user });
     })
     .catch(err => {
-      console.log(err + "user.js route");
+      console.log(err + "user.js route id");
     });
 });
 
