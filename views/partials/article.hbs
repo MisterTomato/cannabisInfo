@@ -23,7 +23,8 @@
         {{/each}}
        </div>
 
-        {{#if previouseArticle}}
+        <div class="buttons">
+            {{#if previouseArticle}}
             <a href="/article/{{article.level}}/{{previouseArticle}}"><button class="start">Previouse article</button></a>
         {{/if}}
         {{#if nextArticle}}
@@ -32,5 +33,6 @@
         {{#if finalArticle}}
             <a href="/plant/update/{{nextLevel}}"><button class="start">Finish Curiculem</button></a>
         {{/if}}
+        </div>
     </div>
 </div>

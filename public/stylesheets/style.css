@@ -120,3 +120,10 @@ a {
   margin: 10px auto;
   padding: 10px;
 }
+
+.buttons {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
