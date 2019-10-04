@@ -16,10 +16,9 @@
         <h1 class="article-title">{{article.title}}</h1>
        <div class="article-container">
 
-        {{#each article.description}}
-            <h3 class="article-header">{{this.header}}</h3>
-            <h5 class="article-sub">{{this.sub}}</h5>
-            <h6 class="article-content">{{this.content}}</h6>
+        {{#each article.q}}
+            <h3 class="article-header">{{this.q}}</h3>
+            <h5 class="article-sub">{{this.a}}</h5>
         {{/each}}
        </div>
 
@@ -28,9 +27,6 @@
         {{/if}}
         {{#if nextArticle}}
             <a href="/article/{{article.level}}/{{nextArticle}}"><button class="start">Next article</button></a>
-        {{/if}}
-        {{#if finalArticle}}
-            <a href="/plant/update/{{nextLevel}}"><button class="start">Finish Curiculem</button></a>
         {{/if}}
     </div>
 </div>

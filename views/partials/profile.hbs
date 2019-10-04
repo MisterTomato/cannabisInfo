@@ -1,3 +1,20 @@
-<h1>Hello</h1>
-<h2>{{user.username}}</h2>
+<section class="header">
+  <section class="header-container">
+      <div class="header-component-left">
+        <a href="/"><img src='https://www.trzcacak.rs/myfile/full/168-1685213_marijuana-order-online-marijuana-buds.png' alt="Logo"/></a>
+      </div>
+      <div class="header-component-right">
+        <a href="/user">
+          <button>Profile</button>
+        </a>
+        <p>Level: {{user.level}}</p>
+      </div>
+</section>
+</section>
+<div class="container">
+  <div class="content">
+    <h1>Hello {{user.username}}</h1>
+<h3>Your current level is: {{user.level}}</h3>
 <a href="/plant/{{user.level}}"><button class="start">Start Course</button></a>
+  </div>
+</div>

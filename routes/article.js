@@ -17,15 +17,19 @@ router.get("/:level/:article", (req, res, next) => {
   Article.findOne({ level: level, article: article })
     .then(article => {
       debugger;
-      const currentArticle = article.article;
-      const previousArticle = currentArticle > 1 ? currentArticle - 1 : null;
-      const nextArticle =
+      let nextLevel = parseInt(level) + 1;
+      let currentArticle = article.article;
+      let previousArticle = currentArticle > 1 ? currentArticle - 1 : null;
+      let nextArticle =
         currentArticle < totalArtciles ? currentArticle + 1 : null;
+      let finalArticle = currentArticle === totalArtciles ? true : null;
 
       res.render("article", {
         article: article,
         nextArticle: nextArticle,
-        previouseArticle: previousArticle
+        previouseArticle: previousArticle,
+        finalArticle: finalArticle,
+        nextLevel: nextLevel
       });
     })
     .catch(err => {

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
   level: { type: Number, required: true },
-  next: { type: String, required: true },
+  next: { type: Number, required: true },
   image: { type: String, required: true }
 });
 
