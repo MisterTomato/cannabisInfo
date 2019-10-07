@@ -10,37 +10,35 @@ router.get("/:level/check", (req, res, next) => {
   const total = values.length;
   let count = 0;
 
-  async function asyncForEach(array, callback) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index, array);
-    }
-  }
-
-  const start = async () => {
-    await asyncForEach(key, async (question, index) => {
-      if ((question = values[index])) {
-        count++;
-      }
-    });
-    if (count / total >= 0.8) {
-      res.redirect(`/plant/update/${level}`);
-    } else if (count / total < 0.8) {
-      res.render(`/test/${level}`, {
-        message: "sorry you did not pass the test"
-      });
-    }
-  };
-
-  start();
-  debugger;
+  Quiz.findOne({ level: level })
+    .then(quiz => {
+      key.forEach((question, index) => {
+        if (question = values[index]) {
+            count++;
+          }
+        });
+    }).then(check => {
+        if (count / total >= 0.8) {
+          res.redirect(`/plant/update/${level}`);
+        } else if (count / total < 0.8) {
+          req.session.message = "sorry you did not pass the test";
+          res.render(`/test/${level}`)
+        };
+    }).catch(err => {
+      console.log(err + "check route");
+      req.session.message = "oeps someting went wrong" + err;
+      res.redirect("/user");
+    })
+    debugger;
 });
 
 router.get("/:level", (req, res, next) => {
   const { level } = req.params;
+  const message = req.session.message;
   Quiz.findOne({ level: level })
     .then(quiz => {
       console.log(quiz.questions);
-      res.render("test", { quiz: quiz });
+      res.render("test", { quiz: quiz, message:message });
     })
     .catch(err => {
       console.log(err + "quiz route");

@@ -17,11 +17,12 @@ router.get("/:level", (req, res, next) => {
 router.get("/", (req, res, next) => {
   debugger;
   const user = req.session.passport.user;
+  const message = req.session.message;
   User.findById({ _id: user })
     .then(user => {
       Plant.findOne({ level: user.level })
         .then(plant => {
-          res.render("plant", { plant: plant });
+          res.render("plant", { plant: plant, message:message });
         })
         .catch(err => {
           console.log(err + "user.js route");

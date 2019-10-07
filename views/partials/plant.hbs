@@ -17,6 +17,9 @@
 <h1>{{plant.title}}</h1>
 <img src={{plant.image}} alt="seed"/>
 <br />
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
 <a href="/article/{{plant.level}}/{{plant.next}}"><button class="start">Start Curriculem {{plant.level}}</button></a>
 </div>
 </div>
