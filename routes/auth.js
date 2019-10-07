@@ -48,13 +48,14 @@ router.post("/register", function(req, res, next) {
               message: "Something went wrong" + err
             });
           } else {
-            res.redirect(`/user/${user.id}`);
+            res.redirect(`/auth/login`);
           }
         });
       }
     })
     .catch(error => {
       next(error.message + "register route post");
+      res.redirect("/");
     });
 });
 

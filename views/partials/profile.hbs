@@ -15,6 +15,9 @@
   <div class="content">
     <h1>Hello {{user.username}}</h1>
 <h3>Your current level is: {{user.level}}</h3>
+{{#if message}}
+  <h3>Oeps something whent wrong here</h3>
+{{/if}}
 <div class="buttons">
 {{#if notBeginner}}
 <a href="/user/reset"><button class="start">Reset Course</button></a>

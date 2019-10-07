@@ -6,7 +6,6 @@ const articleSchema = new Schema({
   description: [{ header: String, sub: String, content: String }],
   images: Array,
   requirements: Array,
-  q: [{ q: String, A: String }],
   level: Number,
   article: { type: Number, required: true }
 });

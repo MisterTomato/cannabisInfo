@@ -10,6 +10,7 @@ router.get("/:level", (req, res, next) => {
     })
     .catch(err => {
       console.log(err + "user.js route");
+      res.redirect("/user");
     });
 });
 
@@ -28,6 +29,7 @@ router.get("/", (req, res, next) => {
     })
     .catch(err => {
       console.log(err + " plant route");
+      res.redirect("/user");
     });
 });
 
@@ -45,6 +47,7 @@ router.get("/update/:level", (req, res, next) => {
     })
     .catch(err => {
       console.log(err + "plant update route");
+      res.redirect("/user");
     });
 });
 

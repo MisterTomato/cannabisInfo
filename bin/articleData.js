@@ -81,26 +81,6 @@ module.exports = [
       "http://www.leafscience.com/wp-content/uploads/2017/05/ruderalis-leaves.jpg"
     ],
     requirements: [],
-    q: [
-      {
-        q:
-          "What are the 3 major classes of the Cannabis family in alpabethical order?",
-        A: "Indica Sativa Ruderalis"
-      },
-      {
-        q:
-          "How is a strain called when it's a cross breading of a Ruderalis and a Sativa or Indica? ",
-        A: "Autoflower"
-      },
-      {
-        q: "What Cannabis class results in an energizing effect?",
-        A: "Sativa"
-      },
-      {
-        q: "What Cannabis class is more suidable for medical use?",
-        A: "Indica"
-      }
-    ],
     level: 1,
     article: 1
   },
@@ -132,12 +112,6 @@ module.exports = [
       "http://2oqz471sa19h3vbwa53m33yj-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/history-of-medical-cannabis-1200px.jpg"
     ],
     requirements: [],
-    q: [
-      {
-        q: "",
-        A: ""
-      }
-    ],
     level: 1,
     article: 2
   }
