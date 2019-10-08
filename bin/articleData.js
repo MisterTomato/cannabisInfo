@@ -28,7 +28,7 @@ module.exports = [
       },
       {
         header: "",
-        sub: "Effects/ uses",
+        sub: "Effects / uses",
         content:
           "Sativa strains commonly incite feelings of euphoria and a head-focused high when consumed. They can also be used in small doses to boost energy levels, creativity, and divergent thinking. Sativas are not the first choice for medical markets, unless dealing with specific medical conditions. Sativa-dominant strains are an ideal choice for the recreational food and drink market. "
       },
@@ -114,81 +114,180 @@ module.exports = [
     requirements: [],
     level: 1,
     article: 2
-  }
+  },
+  {
+    title: "Selecting healthy seeds",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
 
-  // {
-  //   title: "",
-  //   description: [
-  //     { header: "", sub: "", content: "" },
-  //     { header: "", sub: "", content: "" },
-  //     { header: "", sub: "", content: "" }
-  //   ],
-  //   images: [],
-  //   requirements: [],
-  //   q: [
-  //     {
-  //       q: "",
-  //       A: ""
-  //     },
-  //     {
-  //       q: "",
-  //       A: ""
-  //     },
-  //     {
-  //       q: "",
-  //       A: ""
-  //     }
-  //   ],
-  //   level: 13
-  // },
-  // {
-  //   title: "",
-  //   description: [
-  //     { header: "", sub: "", content: "" },
-  //     { header: "", sub: "", content: "" },
-  //     { header: "", sub: "", content: "" }
-  //   ],
-  //   images: [],
-  //   requirements: [],
-  //   q: [
-  //     {
-  //       q: "",
-  //       A: ""
-  //     },
-  //     {
-  //       q: "",
-  //       A: ""
-  //     },
-  //     {
-  //       q: "",
-  //       A: ""
-  //     }
-  //   ],
-  //   level: 14
-  // },
-  // {
-  //   title: "",
-  //   description: [
-  //     { header: "", sub: "", content: "" },
-  //     { header: "", sub: "", content: "" },
-  //     { header: "", sub: "", content: "" }
-  //   ],
-  //   images: [],
-  //   requirements: [],
-  //   q: [
-  //     {
-  //       q: "",
-  //       A: ""
-  //     },
-  //     {
-  //       q: "",
-  //       A: ""
-  //     },
-  //     {
-  //       q: "",
-  //       A: ""
-  //     }
-  //   ],
-  //   level: 15
-  // }
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 1,
+    article: 3
+  },
+  {
+    title: "Germination",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 1,
+    article: 4
+  },
+  {
+    title: "Planting",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 1,
+    article: 5
+  },
+  {
+    title: "Creating the perfect enviroment",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 1,
+    article: 6
+  },
+  {
+    title: "Lighting",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 2,
+    article: 1
+  },
+  {
+    title: "Watering & Nutrients",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 2,
+    article: 2
+  },
+  {
+    title: "Container & Growing medium",
+    description: [
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+
+      {
+        header: "",
+        sub: "",
+        content: ""
+      },
+      {
+        header: "",
+        sub: "",
+        content: ""
+      }
+    ],
+    images: [],
+    requirements: [],
+    level: 2,
+    article: 3
+  }
 ];

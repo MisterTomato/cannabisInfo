@@ -23,8 +23,9 @@ router.get("/", (req, res, next) => {
       Plant.findOne({ level: user.level })
         .then(plant => {
           res.render("plant", { plant: plant, message:message });
-        })
-        .catch(err => {
+        }).then(() => {
+          req.session.message = null;
+        }).catch(err => {
           console.log(err + "user.js route");
         });
     })
@@ -45,8 +46,9 @@ router.get("/update/:level", (req, res, next) => {
     })
     .then(() => {
       res.redirect("/plant");
-    })
-    .catch(err => {
+    }).then(() => {
+      req.session.message = null;
+    }).catch(err => {
       console.log(err + "plant update route");
       res.redirect("/user");
     });

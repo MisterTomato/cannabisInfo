@@ -12,6 +12,15 @@
 </section>
 </section>
 <div class="container">
+  {{#if articles}}
+    <div class="article-list-container">
+      <ul>
+    {{#each articles}}
+      <li><a href="/article/{{this.level}}/{{this.article}}">{{this.title}}</a></li>
+    {{/each}}
+    </ul>
+    </div>
+  {{/if}}
   <div class="content">
     <h1>Hello {{user.username}}</h1>
 <h3>Your current level is: {{user.level}}</h3>
