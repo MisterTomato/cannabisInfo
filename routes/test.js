@@ -10,26 +10,32 @@ router.get("/:level/check", (req, res, next) => {
   const total = values.length;
   let count = 0;
 
-  Quiz.findOne({ level: level })
-    .then(quiz => {
-      key.forEach((question, index) => {
-        if (question = values[index]) {
-            count++;
-          }
-        });
-    }).then(check => {
-        if (count / total >= 0.8) {
-          res.redirect(`/plant/update/${level}`);
-        } else if (count / total < 0.8) {
-          req.session.message = "sorry you did not pass the test";
-          res.render(`/test/${level}`)
-        };
-    }).catch(err => {
-      console.log(err + "check route");
-      req.session.message = "oeps someting went wrong" + err;
-      res.redirect("/user");
-    })
-    debugger;
+  const checkingAnswers = (correct, anwers) => {
+      correct.forEach((keys, index) => {
+        if (keys == anwers[index]) {
+          count++;
+        }
+      })
+  checkScore();
+  }
+
+const checkScore = () => {
+  debugger;
+  if (count / total >= 0.74) {
+      res.redirect(`/plant/update/${level}`);
+  } else if (count / total < 0.74) {
+      req.session.message = "sorry you did not pass the test";
+      res.redirect(`/test/${level}`)
+  } else {
+    console.log(err + "check route");
+    req.session.message = "oeps something whent wrong here";
+    res.redirect("/user");
+  }
+  debugger;
+}
+
+checkingAnswers(key, values);
+debugger;
 });
 
 router.get("/:level", (req, res, next) => {

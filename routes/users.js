@@ -21,8 +21,7 @@ router.get("/reset", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  User.findById({ _id: req.session.passport.user })
-    .then(user => {
+  User.findById({ _id: req.session.passport.user }).then(user => {
       const notBeginner = user.level != 1 ? true : null;
       const message = req.session.message;
       res.render("user/profile", {
@@ -30,8 +29,7 @@ router.get("/", (req, res, next) => {
         notBeginner: notBeginner,
         message: message
       });
-    })
-    .catch(err => {
+    }).catch(err => {
       console.log(err + "user.js route ");
       res.redirect("/auth/login");
     });
@@ -42,8 +40,7 @@ router.get("/:id", (req, res, next) => {
     .then(user => {
       const notBeginner = user.level != 1 ? true : null;
       res.render("user/profile", { user: user, notBeginner: notBeginner });
-    })
-    .catch(err => {
+    }).catch(err => {
       console.log(err + "user.js route id");
       res.redirect("/auth/login");
     });

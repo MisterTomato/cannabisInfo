@@ -40,7 +40,7 @@ router.get("/update/:level", (req, res, next) => {
   debugger;
   User.findById({ _id: req.session.passport.user })
     .then(user => {
-      user.level = level;
+      user.level = (parseInt(level) + 1);
       user.save();
     })
     .then(() => {

@@ -32,9 +32,9 @@ module.exports = [
         a: "Indica",
         tick: true,
         possible: [
-          { a: "Indica", correct: "Indica Sativa Ruderalis" },
-          { a: "Sativa", correct: "Indica Sativa Ruderalis" },
-          { a: "Ruderalis", correct: "Indica Sativa Ruderalis" }
+          { a: "Indica", correct: "Indica" },
+          { a: "Sativa", correct: "Indica" },
+          { a: "Ruderalis", correct: "Indica" }
         ]
       }
     ]
