@@ -42,7 +42,7 @@ router.post("/register", function(req, res, next) {
         });
 
         newUser.save((err, user) => {
-          debugger;
+  
           if (err) {
             res.render("user/register", {
               message: "Something went wrong" + err

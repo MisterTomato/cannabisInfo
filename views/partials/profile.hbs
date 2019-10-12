@@ -11,8 +11,7 @@
       </div>
 </section>
 </section>
-<div class="container">
-  {{#if articles}}
+{{#if articles}}
     <div class="article-list-container">
       <ul>
     {{#each articles}}
@@ -21,6 +20,7 @@
     </ul>
     </div>
   {{/if}}
+<div class="container">
   <div class="content">
     <h1>Hello {{user.username}}</h1>
 <h3>Your current level is: {{user.level}}</h3>
@@ -34,4 +34,8 @@
 <a href="/plant/{{user.level}}"><button class="start">Start Course</button></a>
 </div>
   </div>
+  <div class="canvas-wrapper">
+  <canvas id="myChart"></canvas>
 </div>
+</div>
+

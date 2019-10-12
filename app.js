@@ -12,6 +12,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/Users");
 const hbs = require("hbs");
 const bcrypt = require("bcrypt");
+const MongoStore = require("connect-mongo")(session);
 require("dotenv").config();
 
 var indexRouter = require("./routes/index");
@@ -54,7 +55,8 @@ app.use(
   session({
     secret: "our-passport-local-strategy-app",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
 

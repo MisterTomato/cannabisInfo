@@ -7,7 +7,6 @@ const authorisationMiddleware = require("./authorisationMiddleware");
 /* GET users listing. */
 
 router.get("/reset", (req, res, next) => {
-  debugger;
   User.findById({ _id: req.session.passport.user })
     .then(user => {
       user.level = 1;
@@ -23,35 +22,37 @@ router.get("/reset", (req, res, next) => {
 });
 
 router.get("/", authorisationMiddleware(), (req, res, next) => {
-  let allArticles = []
+  let allArticles = [];
 
-  Article.find().then(articles => {
-    articles.forEach(key => {
-      allArticles.push(key);
-    })
-  }).then(() => {
-    User.findById({ _id: req.session.passport.user })
-    .then(user => {
-      const notBeginner = user.level != 1 ? true : null;
-      const message = req.session.message;
-      res.render("user/profile", {
-        user: user,
-        notBeginner: notBeginner,
-        message: message,
-        articles: allArticles
+  Article.find()
+    .then(articles => {
+      articles.forEach(key => {
+        allArticles.push(key);
       });
     })
     .then(() => {
-      req.session.message = null;
+      User.findById({ _id: req.session.passport.user })
+        .then(user => {
+          const notBeginner = user.level != 1 ? true : null;
+          const message = req.session.message;
+          res.render("user/profile", {
+            user: user,
+            notBeginner: notBeginner,
+            message: message,
+            articles: allArticles
+          });
+        })
+        .then(() => {
+          req.session.message = null;
+        })
+        .catch(err => {
+          console.log(err + "user.js route ");
+          res.redirect("/auth/login");
+        });
     })
     .catch(err => {
-      console.log(err + "user.js route ");
-      res.redirect("/auth/login");
-    })
-  }).catch(err => {
-    console.log(err + "article getting in user route")
-  })
-
+      console.log(err + "article getting in user route");
+    });
 });
 
 router.get("/:id", (req, res, next) => {

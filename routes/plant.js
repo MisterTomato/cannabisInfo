@@ -15,7 +15,6 @@ router.get("/:level", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  debugger;
   const user = req.session.passport.user;
   const message = req.session.message;
   User.findById({ _id: user })
@@ -38,7 +37,6 @@ router.get("/", (req, res, next) => {
 router.get("/update/:level", (req, res, next) => {
   const { level } = req.params;
   console.log(req.session);
-  debugger;
   User.findById({ _id: req.session.passport.user })
     .then(user => {
       user.level = (parseInt(level) + 1);
