@@ -23,6 +23,9 @@ router.get("/reset", (req, res, next) => {
 
 router.get("/", authorisationMiddleware(), (req, res, next) => {
   let allArticles = [];
+  let analytics;
+  let keys = [0];
+  let values = ["start"];
 
   Article.find()
     .then(articles => {
@@ -35,11 +38,20 @@ router.get("/", authorisationMiddleware(), (req, res, next) => {
         .then(user => {
           const notBeginner = user.level != 1 ? true : null;
           const message = req.session.message;
+          analytics = user.analytics;
+
+          analytics.forEach(index => {
+            values.push(index.date);
+            keys.push(index.count);
+          });
+
           res.render("user/profile", {
             user: user,
             notBeginner: notBeginner,
             message: message,
-            articles: allArticles
+            articles: allArticles,
+            keys: encodeURI(JSON.stringify(keys)),
+            values: encodeURI(JSON.stringify(values))
           });
         })
         .then(() => {

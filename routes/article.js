@@ -2,45 +2,65 @@ var express = require("express");
 var router = express.Router();
 const Article = require("../models/Articles");
 const User = require("../models/Users");
+var moment = require("moment");
 
 router.get("/:level/:article/count", (req, res, next) => {
   const { level, article } = req.params;
   const date = new Date();
   const today = date.toISOString().slice(0, 10);
   const id = req.session.passport.user;
+  console.log(today);
 
-  User.find({ _id: id, "analytics.date": today })
+  User.findById({ _id: id })
     .then(user => {
-      debugger;
-      if (user[0].analytics) {
-        debugger;
-        return user[0].update(
-          {
-            $inc: {
-              "analytics.$[element].count": 1
-            }
-          },
-          { arrayFilters: [{ element: { date: today } }] }
-        );
-        debugger;
-        // user[0].save();
+     
+      console.log(user);
+      if (user.analytics.length === 0) {
+        user.analytics.push({ date: today, count: 1 });
+        user.save();
+        return;
       } else {
-        return User.findById({ _id: id }).then(user => {
-          debugger;
-          user.analytics.push({ date: today, count: 1 });
-          user.save();
-          return;
-        });
+        User.find({ _id: id, "analytics.date": today })
+          .then(now => {
+           
+            if (now.length !== 0) {
+          
+              User.update(
+                { "analytics.date": today },
+                {
+                  '$inc': {
+                    "analytics.$.count": 1
+                  }
+                }
+              )
+                .then(updated => {
+                  console.log("user is updates!!!<----" + updated);
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            } else {
+              User.findById({ _id: id }).then(user => {
+                
+                user.analytics.push({ date: today, count: 1 });
+                user.save();
+                return;
+              });
+            }
+          })
+          .then(user => {
+            console.log(user);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
-
-      debugger;
     })
     .then(user => {
-      debugger;
       res.redirect(`/article/${level}/${article}`);
     })
     .catch(err => {
-      debugger;
+      console.log(err);
     });
 });
 
