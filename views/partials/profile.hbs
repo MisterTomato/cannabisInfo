@@ -1,9 +1,12 @@
 <section class="header">
   <section class="header-container">
       <div class="header-component-left">
-        <a href="/"><img src='https://www.trzcacak.rs/myfile/full/168-1685213_marijuana-order-online-marijuana-buds.png' alt="Logo"/></a>
+        <a href="/"><img class="logo" src='https://www.trzcacak.rs/myfile/full/168-1685213_marijuana-order-online-marijuana-buds.png' alt="Logo"/></a>
       </div>
       <div class="header-component-right">
+        <a href="/auth/logout">
+          <button class="reset">Logout</button>
+        </a>
         <a href="/user">
           <button>Profile</button>
         </a>
@@ -11,16 +14,21 @@
       </div>
 </section>
 </section>
-{{#if articles}}
-    <div class="article-list-container">
-      <ul>
-    {{#each articles}}
-      <li><a href="/article/{{this.level}}/{{this.article}}">{{this.title}}</a></li>
+
+<div class="profile-wrapper">
+<div class="article-list-container">
+  <p class="list-header">Full Course Overview</p>
+  <hr>
+  <ol class="articleList">
+    {{#each openArticles}}
+      <a href="/article/{{this.level}}/{{this.article}}"><li class="click"><span>level {{this.level}}. {{this.title}}</span></li></a>
     {{/each}}
-    </ul>
-    </div>
-  {{/if}}
-<div class="container">
+    {{#each closedArticles}}
+      <li class="nonClick"><span>Finish curriculem to unlock this article</span>level {{this.level}}. {{this.title}}</li>
+    {{/each}}
+  </ol>
+</div>
+<div class="profile-container">
   <div class="content">
     <h1>Hello {{user.username}}</h1>
 <h3>Your current level is: {{user.level}}</h3>
@@ -29,13 +37,14 @@
 {{/if}}
 <div class="buttons">
 {{#if notBeginner}}
-<a href="/user/reset"><button class="start">Reset Course</button></a>
+<a href="/user/reset"><button class="reset">Reset Course</button></a>
 {{/if}}
 <a href="/plant/{{user.level}}"><button class="start">Start Course</button></a>
 </div>
   </div>
   <div class="canvas-wrapper">
   <canvas id="myChart"></canvas>
+</div>
 </div>
 </div>
 

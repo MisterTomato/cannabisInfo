@@ -22,59 +22,55 @@ router.get("/reset", (req, res, next) => {
 });
 
 router.get("/", authorisationMiddleware(), (req, res, next) => {
-  let allArticles = [];
+  let openArticles = [];
+  let closedArticles = [];
   let analytics;
   let keys = [0];
   let values = ["start"];
 
-  Article.find()
-    .then(articles => {
-      articles.forEach(key => {
-        allArticles.push(key);
+  User.findById({ _id: req.session.passport.user })
+    .then(async user => {
+      analytics = user.analytics;
+
+      await analytics.forEach(index => {
+        values.push(index.date);
+        keys.push(index.count);
       });
-    })
-    .then(() => {
-      User.findById({ _id: req.session.passport.user })
-        .then(user => {
-          const notBeginner = user.level != 1 ? true : null;
-          const message = req.session.message;
-          analytics = user.analytics;
 
-          analytics.forEach(index => {
-            values.push(index.date);
-            keys.push(index.count);
-          });
-
-          res.render("user/profile", {
-            user: user,
-            notBeginner: notBeginner,
-            message: message,
-            articles: allArticles,
-            keys: encodeURI(JSON.stringify(keys)),
-            values: encodeURI(JSON.stringify(values))
-          });
-        })
-        .then(() => {
-          req.session.message = null;
-        })
-        .catch(err => {
-          console.log(err + "user.js route ");
-          res.redirect("/auth/login");
+      await Article.find({ level: { $lte: user.level } }).then(articles => {
+        articles.forEach(key => {
+          openArticles.push(key);
         });
-    })
-    .catch(err => {
-      console.log(err + "article getting in user route");
-    });
-});
+      });
 
-router.get("/:id", (req, res, next) => {
-  User.findById({ _id: req.params.id })
+      await Article.find({ level: { $gt: user.level } }).then(articles => {
+        articles.forEach(key => {
+          closedArticles.push(key);
+        });
+      });
+
+      return user;
+    })
     .then(user => {
       const notBeginner = user.level != 1 ? true : null;
-      res.render("user/profile", { user: user, notBeginner: notBeginner });
+      const message = req.session.message;
+
+      res.render("user/profile", {
+        user: user,
+        notBeginner: notBeginner,
+        message: message,
+        openArticles: openArticles,
+        closedArticles: closedArticles,
+        keys: encodeURI(JSON.stringify(keys)),
+        values: encodeURI(JSON.stringify(values))
+      });
+      console.log("my data", openArticles);
+    })
+    .then(() => {
+      req.session.message = null;
     })
     .catch(err => {
-      console.log(err + "user.js route id");
+      console.log(err + "user.js route ");
       res.redirect("/auth/login");
     });
 });

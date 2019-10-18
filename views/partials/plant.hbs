@@ -12,8 +12,13 @@
 </section>
 </section>
 <div class="container">
-  {{!-- <canvas id="my-canvas" ></canvas> --}}
+  {{#if passed}}
+      <canvas id="myCanvas" width="1039" height="662" style="position: fixed; pointer-events: none; z-index: 100; margin: auto;"></canvas>
+  {{/if}}
   <div class="content">
+{{#if passed}}
+      <h2 class="celeb-text">Congratulations!! You are now level: {{plant.level}}</h2>
+  {{/if}}
 <h1>{{plant.title}}</h1>
 <img src={{plant.image}} alt="seed"/>
 <br />
@@ -23,3 +28,12 @@
 <a href="/article/{{plant.level}}/{{plant.next}}"><button class="start">Start Curriculem {{plant.level}}</button></a>
 </div>
 </div>
+<script>
+var myConfetti = confetti.create(myCanvas, { resize: true });
+myConfetti({
+  particleCount: 500,
+  spread: 500
+  // any other options from the global
+  // confetti function
+});
+</script>

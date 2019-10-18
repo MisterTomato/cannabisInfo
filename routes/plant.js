@@ -17,14 +17,21 @@ router.get("/:level", (req, res, next) => {
 router.get("/", (req, res, next) => {
   const user = req.session.passport.user;
   const message = req.session.message;
+  const passed = req.query.valid;
   User.findById({ _id: user })
     .then(user => {
       Plant.findOne({ level: user.level })
         .then(plant => {
-          res.render("plant", { plant: plant, message:message });
-        }).then(() => {
+          res.render("plant", {
+            plant: plant,
+            message: message,
+            passed: passed
+          });
+        })
+        .then(() => {
           req.session.message = null;
-        }).catch(err => {
+        })
+        .catch(err => {
           console.log(err + "user.js route");
         });
     })
@@ -39,14 +46,17 @@ router.get("/update/:level", (req, res, next) => {
   console.log(req.session);
   User.findById({ _id: req.session.passport.user })
     .then(user => {
-      user.level = (parseInt(level) + 1);
+      user.level = parseInt(level) + 1;
       user.save();
     })
     .then(() => {
-      res.redirect("/plant");
-    }).then(() => {
+      const string = encodeURIComponent("true");
+      res.redirect("/plant?valid=" + string);
+    })
+    .then(() => {
       req.session.message = null;
-    }).catch(err => {
+    })
+    .catch(err => {
       console.log(err + "plant update route");
       res.redirect("/user");
     });

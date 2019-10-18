@@ -16,7 +16,7 @@ router.get("/login", (req, res, next) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/login");
+  res.redirect("/");
 });
 
 router.post("/register", function(req, res, next) {
@@ -42,7 +42,6 @@ router.post("/register", function(req, res, next) {
         });
 
         newUser.save((err, user) => {
-  
           if (err) {
             res.render("user/register", {
               message: "Something went wrong" + err

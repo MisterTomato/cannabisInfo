@@ -16,18 +16,21 @@
 <div class="container">
   <div class="content" style="margin-top: 100px;">
     <form action="/auth/login" method="POST">
-  <div>
+  <div style="margin: 10px auto;">
     <label for="username">Username:</label>
     <input type="text" name="username">
   </div>
-  <div>
+  <div style="margin: 10px auto;">
     <label for="password">Password:</label>
     <input type="password" name="password">
+  </div>
+  <div style="margin: 10px auto;">
+    Don't have an account? <a href="/auth/register">Register</a>
   </div>
   {{#if message}}
     <div class="error-message">{{ message }}</div>
   {{/if}}
-  <div>
+  <div style="margin: 10px auto;">
     <input type="submit" value="Log In">
   </div>
 </form>

@@ -13,14 +13,19 @@
 </section>
 <div class="container">
     <div class="content">
-        <h1 class="article-title">{{article.title}}</h1>
+      <h1 class="article-title">{{article.title}}</h1>
+        <img class="header-img" src={{firstImage}} alt="img" />
        <div class="article-container">
-
         {{#each article.description}}
             <h3 class="article-header">{{this.header}}</h3>
             <h5 class="article-sub">{{this.sub}}</h5>
             <h6 class="article-content">{{this.content}}</h6>
         {{/each}}
+        <div class="article-img">
+        {{#each images}}
+         <img src={{this}} alt="img"/>
+         {{/each}}
+        </div>
        </div>
 
         <div class="buttons">

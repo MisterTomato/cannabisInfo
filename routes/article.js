@@ -13,7 +13,6 @@ router.get("/:level/:article/count", (req, res, next) => {
 
   User.findById({ _id: id })
     .then(user => {
-     
       console.log(user);
       if (user.analytics.length === 0) {
         user.analytics.push({ date: today, count: 1 });
@@ -22,13 +21,11 @@ router.get("/:level/:article/count", (req, res, next) => {
       } else {
         User.find({ _id: id, "analytics.date": today })
           .then(now => {
-           
             if (now.length !== 0) {
-          
               User.update(
                 { "analytics.date": today },
                 {
-                  '$inc': {
+                  $inc: {
                     "analytics.$.count": 1
                   }
                 }
@@ -41,7 +38,6 @@ router.get("/:level/:article/count", (req, res, next) => {
                 });
             } else {
               User.findById({ _id: id }).then(user => {
-                
                 user.analytics.push({ date: today, count: 1 });
                 user.save();
                 return;
@@ -77,20 +73,34 @@ router.get("/:level/:article", (req, res, next) => {
   });
 
   Article.findOne({ level: level, article: article })
-    .then(article => {
+    .then(async article => {
       let nextLevel = parseInt(level) + 1;
       let currentArticle = article.article;
       let previousArticle = currentArticle > 1 ? currentArticle - 1 : null;
       let nextArticle =
         currentArticle < totalArtciles ? currentArticle + 1 : null;
       let finalArticle = currentArticle === totalArtciles ? true : null;
+      let allImg = article.images;
+      let firstImage;
+      let images = [];
 
-      res.render("article", {
+      await allImg.forEach((image, index) => {
+        debugger;
+        if (index === 0) {
+          firstImage = image;
+        } else if (index !== 0) {
+          images.push(image);
+        }
+      });
+
+      await res.render("article", {
         article: article,
         nextArticle: nextArticle,
         previouseArticle: previousArticle,
         finalArticle: finalArticle,
-        nextLevel: nextLevel
+        nextLevel: nextLevel,
+        firstImage: firstImage,
+        images: images
       });
     })
     .catch(err => {
