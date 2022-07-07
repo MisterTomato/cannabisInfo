@@ -20,7 +20,7 @@
     "express-session": "^1.16.2",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.7.3",
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
